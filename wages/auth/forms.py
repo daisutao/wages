@@ -16,7 +16,6 @@ class LoginForm(FlaskForm):
             return False
 
         self.user = User.query.filter_by(employee=self.employee.data).first()
-
         if not self.user:
             self.employee.errors.append('该用户不存在！')
             return False

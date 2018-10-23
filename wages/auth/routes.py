@@ -4,7 +4,6 @@ from wages.auth import bp
 from flask_login import current_user, login_user, logout_user
 from wages.models import User
 from wages.extensions import db
-from urllib.parse import urlparse, urljoin
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -35,4 +34,4 @@ def register():
 @bp.route('/logout')
 def log_out():
     logout_user()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('auth.login'))
