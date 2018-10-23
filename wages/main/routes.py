@@ -20,8 +20,8 @@ def index():
     return render_template('index.html')
 
 
-@login_required
 @bp.route('/user/<string:employee>')
+@login_required
 def user(employee):
     user = User.query.filter_by(employee=employee).first_or_404()
     return render_template('user.html', user=user)
