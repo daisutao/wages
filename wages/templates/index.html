@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block app_content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="display-4">Hello flask!</h1>
+            <p class="lead">此app由模板搭建而成。</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title"><i class="fa fa-code"> 精炼的代码</i></h2>
+                <p class="card-text">比起其他的flask项目，此项目的代码力求精炼易懂，并且符合最佳实践，适合快速上手。</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="#"><button type="button" class="btn btn-primary">More</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title"><i class="fa fa-wrench"> 完备的扩展</i></h2>
+                <p class="card-text">此项目集成了前端模板、表单、数据库、注册登录等基础扩展，方便开发者迅速构建网页。</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="#"><button type="button" class="btn btn-primary">More</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title"><i class="fa fa-heart"> 懒人的最爱</i></h2>
+                <p class="card-text">如果你想用flask迅速搭建一个功能齐全的页面，那此模板一定是你的不二之选！</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="#"><button type="button" class="btn btn-primary">More</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

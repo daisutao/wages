@@ -1,0 +1,47 @@
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import DataRequired, EqualTo, ValidationError
+from wages.models import User
+
+
+class LoginForm(FlaskForm):
+    employee = StringField('工号', validators=[DataRequired()])
+    password = PasswordField('密码', validators=[DataRequired()])
+    remember_me = BooleanField('记住我')
+    submit = SubmitField('登录')
+
+    def validate(self):
+        initial_validation = super(LoginForm, self).validate()
+        if not initial_validation:
+            return False
+
+        self.user = User.query.filter_by(employee=self.employee.data).first()
+
+        if not self.user:
+            self.employee.errors.append('该用户不存在！')
+            return False
+
+        if not self.user.check_password(password=self.password.data):
+            self.password.errors.append('密码错误！')
+            return False
+        return True
+
+
+class RegisterForm(FlaskForm):
+    employee = StringField('工号', validators=[DataRequired()])
+    username = StringField('姓名', validators=[DataRequired()])
+    password = PasswordField('密码', validators=[DataRequired()])
+    confirm = PasswordField('确认密码', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('注册')
+
+    def validate(self):
+        initial_validation = super(RegisterForm, self).validate()
+        if not initial_validation:
+            return False
+
+        self.user = User.query.filter_by(employee=self.employee.data).first()
+        if self.user:
+            self.employee.errors.append('该用户已存在！')
+            return False
+
+        return True
