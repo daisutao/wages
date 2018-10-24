@@ -1,17 +1,24 @@
 {% extends 'layout.html' %}
 
 {% block app_content %}
+    {% set list=['工号', '姓名', '调休时数', '迟到分钟', '早退分钟', '旷工天数',
+                 '平时加班', '休日加班', '假日加班', '请假'] %}
     <table class="table table-hover">
     <thead>
         <tr>
-            <td>工号</td><td>姓名</td><td>其它</td>
+            {% for item in list %}
+            <td style="font-size: 14px">{{ item }}</td>
+            {% endfor %}
         </tr>
     </thead>
     <tbody>
     {% for index, row in df.iterrows() %}
         <tr>
+            {% for item in index %}
+            <td style="font-size: 14px">{{ item }}</td>
+            {% endfor %}
             {% for item in row %}
-            <td>item</td>
+            <td style="font-size: 14px">{{ item }}</td>
             {% endfor %}
         </tr>
     {% endfor %}

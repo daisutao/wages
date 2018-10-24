@@ -19,17 +19,36 @@ def before_request():
     g.email = current_app.config['EMAIL']
 
 
+def plus(data, x, a, b):
+    if data[x] != 0:
+        data[a] += data[x] * 0.5
+        data[b] += data[x] * 0.5
+    return data
+
+
 @bp.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
     form = UploadForm()
     if form.validate_on_submit():
         f = form.sheet.data
-        filename = secure_filename(f.filename)
+        # filename = secure_filename(f.filename)
         try:
             df = pd.read_excel(f, usecols='B:D,M:V,Y,AA:AB')
-            group = df.groupby(['工号', '姓名'])['调休时数', '产假天数', '请假天数', '请假类别', '迟到分钟', '早退分钟', '旷工天数',
-                                             '平时加班', '休日加班', '假日加班'].sum()
+            group1 = df.groupby(['工号', '姓名'])['调休时数', '迟到分钟', '早退分钟', '旷工天数',
+                                              '平时加班', '休日加班', '假日加班'].sum()
+            group2 = df.groupby(['工号', '姓名', '请假类别'])['请假天数'].sum()
+            group2 = group2.unstack(level=2, fill_value=0)
+
+            for col in group2.columns:
+                mix = col.split(',')
+                if len(mix) > 1:
+                    group2 = group2.apply(plus, axis=1, args=(col, mix[0], mix[1]))
+                    group2.drop(col, axis=1, inplace=True)
+
+            new_df = pd.concat([group1, group2], axis=1)
+            new_df.fillna(0, inplace=True)
+
             # for index, row in df.iterrows():
             #     line = db.session.query(SpcLine).filter_by(line_no=row['A']).first()
             #     if line:
@@ -41,7 +60,7 @@ def index():
             #             data.spc_val = row['C']
             #         db.session.commit()
             flash('上传成功！', 'success')
-            return render_template('wages.html', df=group)
+            return render_template('wages.html', df=new_df)
 
             # flash(_('The csv file uploaded successfully!'), 'info')
             # return redirect(request.referrer)
