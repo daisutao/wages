@@ -5,6 +5,17 @@ from datetime import datetime
 from hashlib import md5
 
 
+class Dept(db.Model):
+    __tablename__ = 'depts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), index=True, unique=True, nullable=False)
+    user = db.relationship('User', backref='user')
+
+    def __repr__(self):
+        return f'<Dept {self.name}>'
+
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -13,6 +24,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), nullable=False)
     password_hash = db.Column(db.String(128))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    dept_id = db.Column(db.Integer, db.ForeignKey('depts.id'))
 
     def __repr__(self):
         return f'<User {self.employee}>'

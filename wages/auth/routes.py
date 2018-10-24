@@ -22,7 +22,7 @@ def login():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        user = User(employee=form.employee.data, username=form.username.data)
+        user = User(employee=form.employee.data, username=form.username.data, dept_id=form.deptlist.data.id)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()

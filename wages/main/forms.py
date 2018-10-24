@@ -6,4 +6,8 @@ from flask_wtf.file import FileField, FileRequired, FileAllowed
 class UploadForm(FlaskForm):
     sheet = FileField('考勤文件',
                       validators=[FileRequired(), FileAllowed(['xls', 'xlsx'], '只能上传考勤Excel文件！')])
-    submit = SubmitField('上传', render_kw={'class': 'btn btn-success pull-right'})
+    submit = SubmitField('上传',
+                         render_kw={
+                             'class': 'form-control'
+                         })
+                         #render_kw={"class": "btn btn-success pull-right"})

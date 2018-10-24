@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
+
 from wtforms.validators import DataRequired, EqualTo, ValidationError
-from wages.models import User
+from wages.models import Dept, User
 
 
 class LoginForm(FlaskForm):
@@ -26,9 +28,15 @@ class LoginForm(FlaskForm):
         return True
 
 
+def query_factory():
+    return Dept.query
+
+
 class RegisterForm(FlaskForm):
     employee = StringField('工号', validators=[DataRequired()])
     username = StringField('姓名', validators=[DataRequired()])
+    deptlist = QuerySelectField('部门', validators=[DataRequired()],
+                                query_factory=query_factory, get_label='name')
     password = PasswordField('密码', validators=[DataRequired()])
     confirm = PasswordField('确认密码', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('注册')
