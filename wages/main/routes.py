@@ -1,5 +1,5 @@
 from wages.main import bp
-import os
+
 from flask import redirect, render_template, request, url_for, current_app, flash, g
 from werkzeug.utils import secure_filename
 from flask_login import current_user, login_required

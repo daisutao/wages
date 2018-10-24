@@ -1,0 +1,9 @@
+Flask
+Flask-Debugtoolbar
+Flask-Login
+Flask-Migrate
+Flask-Moment
+Flask-SQLAlchemy
+Flask-WTF
+pandas
+xlrd
