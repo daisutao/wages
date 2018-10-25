@@ -16,6 +16,25 @@ class Dept(db.Model):
         return f'<Dept {self.name}>'
 
 
+class Salary(db.Model):
+    __tablename__ = 'salarys'
+
+    id = db.Column(db.Integer, primary_key=True)                                   #id
+    employee = db.Column(db.String(10), index=True, unique=True, nullable=False)   #工号
+    account = db.Column(db.String(20), nullable=True)             #个人账号
+    base_funtion = db.Column(db.Float)        #基本职能
+    basic_performance = db.Column(db.Float)   #基本业绩
+    solid_result = db.Column(db.Float)        #业绩能力
+    housing_allowance = db.Column(db.Float)   #住房补贴
+    position_allowance = db.Column(db.Float)  #职位补
+    fixed_overtime = db.Column(db.Float)      #固定加班费
+    traffic_allowance = db.Column(db.Float)   #交通补
+    provident_fund = db.Column(db.Float)      #公积金
+    union_due = db.Column(db.Float)           #工会会费
+
+    def __repr__(self):
+        return f'<Salary {self.employee}>'
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 

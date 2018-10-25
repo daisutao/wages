@@ -1,40 +1,15 @@
-#!/usr/bin/env python
-from datetime import datetime, timedelta
-import unittest
-from wages import create_app, db
-from wages.models import User
-from config import Config
+import pandas as pd
+from sqlalchemy import create_engine
+import os
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+engine = create_engine('sqlite:///' + os.path.join(basedir, 'app.db'))
+df = pd.read_excel('D:/MAT-201809-SA.xlsx', sheet_name='工资计算模板', header=7,
+                   usecols='F,M:P,R:T,Y,AD,AJ', dtype={'工号': str, '个人账号': str})
+df = df[df['工号']!="nan"]
 
-class TestConfig(Config):
-    TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite://'
-
-
-class UserModelCase(unittest.TestCase):
-    def setUp(self):
-        self.app = create_app(TestConfig)
-        self.app_context = self.app.app_context()
-        self.app_context.push()
-        db.create_all()
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
-
-    def test_password_hashing(self):
-        u = User(employee='jimmy')
-        u.set_password('cat')
-        self.assertFalse(u.check_password('dog'))
-        self.assertTrue(u.check_password('cat'))
-
-    def test_avatar(self):
-        u = User(employee='john', email='john@example.com')
-        self.assertEqual(u.avatar(128), ('https://www.gravatar.com/avatar/'
-                                         'd4c74594d841139328695756648b6bd6'
-                                         '?d=identicon&s=128'))
-
-
-if __name__ == '__main__':
-    unittest.main(verbosity=2)
+df.columns=["employee", "account","base_funtion",  "basic_performance",
+                  "solid_result", "housing_allowance",  "position_allowance",
+                   "fixed_overtime",  "traffic_allowance",  "provident_fund", "union_due"]
+print(df)
+df.to_sql('salarys', index=False, con=engine, if_exists='append')
