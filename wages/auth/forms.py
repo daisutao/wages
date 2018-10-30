@@ -35,8 +35,8 @@ def query_factory():
 class RegisterForm(FlaskForm):
     employee = StringField('工号', validators=[DataRequired()])
     username = StringField('姓名', validators=[DataRequired()])
-    deptlist = QuerySelectField('部门', validators=[DataRequired()],
-                                query_factory=query_factory, get_label='name')
+    # deptlist = QuerySelectField('部门', validators=[DataRequired()],
+    #                             query_factory=query_factory, get_label='name')
     password = PasswordField('密码', validators=[DataRequired()])
     confirm = PasswordField('确认密码', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('注册')

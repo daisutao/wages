@@ -9,6 +9,19 @@
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="nav navbar-nav mr-auto">
+                {% if current_user.is_administrator %}
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">文件上传
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url_for('main.attendance') }}">考勤文件</a>
+                        <a class="dropdown-item" href="{{ url_for('auth.register') }}">其它文件</a>
+                    </ul>
+                </li>
+                {% endif %}
+
                 {{ render_nav_item('main.index', '金型') }}
             </ul>
             <ul class="nav navbar-nav">

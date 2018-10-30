@@ -26,9 +26,14 @@ def plus(data, x, a, b):
     return data
 
 
-@bp.route('/', methods=['GET', 'POST'])
-@login_required
+@bp.route('/')
 def index():
+    return render_template('index.html')
+
+
+@bp.route('/attendance', methods=['GET', 'POST'])
+@login_required
+def attendance():
     form = UploadForm()
     if form.validate_on_submit():
         f = form.sheet.data
@@ -74,10 +79,9 @@ def index():
         # flash('上传成功！', 'success')
         # return render_template('wages.html', df=group)
         # return redirect(url_for('main.wages'))
-    return render_template('index.html', form=form)
 
 
-@bp.route('/wages')
+@bp.route('/wages', methods=['GET', 'POST'])
 @login_required
 def wages():
     return render_template('wages.html')

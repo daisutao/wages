@@ -3,9 +3,7 @@
 
 {% block content %}
 <div class="pb-2 mt-4 mb-2 border-bottom">
-    <h1>请登录</h1>
+    <h1>考勤文件上传</h1>
 </div>
-{{ render_form(form) }}
-<br>
-<p>新用户？<a href="{{ url_for('auth.register') }}">点此注册</a></p>
+    {{ render_form(form) }}
 {% endblock %}

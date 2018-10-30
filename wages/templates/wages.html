@@ -1,6 +1,8 @@
 {% extends 'layout.html' %}
+{% from 'bootstrap/form.html' import render_form %}
 
-{% block app_content %}
+{% block content %}
+    {{ render_form(form) }}
     {% set list=['工号', '姓名', '调休时数', '迟到分钟', '早退分钟', '旷工天数',
                  '平时加班', '休日加班', '假日加班', '请假'] %}
     <table class="table table-hover">

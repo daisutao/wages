@@ -1,28 +1,25 @@
-{% block head %}
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-{{ bootstrap.load_css() }}
-{{ bootstrap.load_js() }}
-{% endblock %}
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ g.title }}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block styles %}{% endblock %}
+</head>
 
-{% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.css') }}">
-{% endblock %}
-
-{% block navbar %}
-{% include 'nav.html' %}
-{% endblock %}
-
-{% block content %}
-    <div class="container">
-    {% include 'flashes.html' %}
-    {% block app_content %}{% endblock %}
-    </div>
-{% include "footer.html" %}
-{% endblock %}
-
-{% block scripts %}
-{{ moment.include_moment() }}
-{{ moment.lang(g.locale) }}
-{% endblock %}
+<body>
+    <main class="container">
+        {% include 'nav.html' %}
+        {% include 'flashes.html' %}
+        {% block content %}{% endblock %}
+        {% include "footer.html" %}
+        {{ bootstrap.load_js() }}
+        {{ moment.include_moment() }}
+        {{ moment.lang(g.locale) }}
+        {% block scripts %}{% endblock %}
+    </main>
+</body>

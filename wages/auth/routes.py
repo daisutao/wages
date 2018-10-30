@@ -9,12 +9,12 @@ from wages.extensions import db
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.wages'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(employee=form.employee.data).first()
         login_user(user, remember=form.remember_me.data)
-        return redirect(request.args.get('next') or url_for('main.index'))
+        return redirect(request.args.get('next') or url_for('main.wages'))
     return render_template('auth/login.html', form=form)
 
 
@@ -22,7 +22,7 @@ def login():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        user = User(employee=form.employee.data, username=form.username.data, dept_id=form.deptlist.data.id)
+        user = User(employee=form.employee.data, username=form.username.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -34,4 +34,4 @@ def register():
 @bp.route('/logout')
 def log_out():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('main.index'))

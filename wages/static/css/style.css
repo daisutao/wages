@@ -23,7 +23,6 @@ footer a {
 
 footer p {
     float: right;
-    margin-right: 25px;
 }
 
 footer ul {
@@ -32,16 +31,13 @@ footer ul {
 
 footer ul li {
     float: left;
-    margin-left: 10px;
 }
 
 footer .company {
     float: left;
-    margin-left: 25px;
 }
 
 footer .footer-nav {
     float: right;
-    margin-right: 25px;
     list-style: none;
 }
