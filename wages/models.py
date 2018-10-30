@@ -53,7 +53,11 @@ class User(db.Model, UserMixin):
     
     def check_password(self, password):
         return security.check_password_hash(self.password_hash, password)
-    
+
+    @property
+    def is_admin(self):
+        return self.employee == 'admin'
+
     @login.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))

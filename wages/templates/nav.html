@@ -8,9 +8,22 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="nav navbar-nav mr-auto">
+            <ul class="nav navbar-nav ">
                 {{ render_nav_item('main.index', '金型') }}
             </ul>
+            {% if current_user.is_admin %}
+            <div class="dropdown  mr-auto" >
+            <button type="button" class="btn dropdown-toggle" style="background-color: #343a40 ;color:#ffffff" id="dropdownMenu1" data-toggle="dropdown">主题
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li  class="dropdown-item">Java</li>
+                <li  class="dropdown-item">数据挖掘</li>
+                <li  class="dropdown-item">数据通信/网络</li >
+                <li  class="dropdown-item">分离的链接</li>
+            </ul>
+            </div>
+            {% endif %}
             <ul class="nav navbar-nav">
                 {% if current_user.is_anonymous %}
                 {{render_nav_item('auth.login', '登录')}}
