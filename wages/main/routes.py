@@ -27,7 +27,6 @@ def plus(data, x, a, b):
 
 
 @bp.route('/', methods=['GET', 'POST'])
-@login_required
 def index():
     form = UploadForm()
     if form.validate_on_submit():
