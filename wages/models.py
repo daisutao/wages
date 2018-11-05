@@ -60,3 +60,29 @@ class User(db.Model, UserMixin):
     def avatar(self, size):
         digest = md5(self.username.lower().encode('utf-8')).hexdigest()
         return f'https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}'
+
+
+class Daily(db.Model):
+    __tablename__ = 'daily'
+
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date(10), index=True, nullable=False)
+
+    working = db.Column(db.Integer)  # 工作 unit: hour
+    leave01 = db.Column(db.Integer)  # 事假 unit: hour
+    leave02 = db.Column(db.Integer)  # 病假 unit: hour
+    leave03 = db.Column(db.Integer)  # 丧假 unit: hour
+    leave04 = db.Column(db.Integer)  # 婚假 unit: hour
+    leave05 = db.Column(db.Integer)  # 产假 unit: hour
+    leave06 = db.Column(db.Integer)  # 年休假 unit: hour
+    leave07 = db.Column(db.Integer)  # 工作假 unit: hour
+    leave08 = db.Column(db.Integer)  # 陪产假 unit: hour
+    leave09 = db.Column(db.Integer)  # 流产假 unit: hour
+    leave10 = db.Column(db.Integer)  # 路程假 unit: hour
+    leave11 = db.Column(db.Integer)  # 其它假 unit: hour
+    come_late = db.Column(db.Integer)  # 迟到 unit: minute
+    left_early = db.Column(db.Integer)  # 早退 unit: minute
+    skip_work = db.Column(db.Integer)  # 旷工 unit: hour
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship('User')
