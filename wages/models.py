@@ -66,7 +66,7 @@ class Daily(db.Model):
     __tablename__ = 'daily'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date(10), index=True, nullable=False)
+    date = db.Column(db.Date, index=True)
 
     working = db.Column(db.Integer)  # 工作 unit: hour
     leave01 = db.Column(db.Integer)  # 事假 unit: hour
