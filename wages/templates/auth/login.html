@@ -1,5 +1,4 @@
 {% extends 'layout.html' %}
-{% from 'bootstrap/form.html' import render_form, render_field %}
 
 {% block content %}
     {# render_form(form) #}
@@ -8,19 +7,41 @@
         {{ form.csrf_token() }}
         <div class="input-group col-md-10 offset-md-1 mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" style="width: 40px"><i class="fa fa-user fa-lg"></i></span>
+                <span class="input-group-text" style="width: 41px"><i class="fa fa-user fa-lg"></i></span>
             </div>
             {{ form.employee }}
         </div>
 
         <div class="input-group col-md-10 offset-md-1 mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" style="width: 40px"><i class="fa fa-key fa-lg"></i></span>
+                <span class="input-group-text" style="width: 41px"><i class="fa fa-key fa-lg"></i></span>
             </div>
             {{ form.password }}
         </div>
-{#            {{ render_field(form.employee, form_type="inline") }}#}
-{#            {{ render_field(form.password, form_type="inline") }}#}
+
+        {{ form.submit }}
+    </form>
+{% endblock %}{% extends 'layout.html' %}
+
+{% block content %}
+    {# render_form(form) #}
+    <form method="post" class="form-control col-md-6 m-auto" style="background: rgba(255,255,255,0.2);">
+        <h4 class="my-2">请登录</h4>
+        {{ form.csrf_token() }}
+        <div class="input-group col-md-10 offset-md-1 mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width: 41px"><i class="fa fa-user fa-lg"></i></span>
+            </div>
+            {{ form.employee }}
+        </div>
+
+        <div class="input-group col-md-10 offset-md-1 mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width: 41px"><i class="fa fa-key fa-lg"></i></span>
+            </div>
+            {{ form.password }}
+        </div>
+
         {{ form.submit }}
     </form>
 {% endblock %}
