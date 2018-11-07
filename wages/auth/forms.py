@@ -12,7 +12,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('密码', validators=[DataRequired()],
                              render_kw={"class": "form-control", "placeholder": "密码"})
     submit = SubmitField('登录',
-                         render_kw={"class": "btn btn-primary btn-block", "placeholder": "密码"})
+                         render_kw={"class": "col-md-4 offset-md-4 btn btn-primary btn-block mb-2"})
 
     def validate(self):
         initial_validation = super(LoginForm, self).validate()

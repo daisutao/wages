@@ -46,12 +46,5 @@ body{
     background-image: url("../money.jpg") ;background-size:cover;
 }
 .fa{
-  display: inline-block; top: 10px;left: 20px;position:absolute;color: #ccc;
-}
-
-input[type="text"],input[type="password"]{
-    padding-left:26px;
-}
-.checkbox{
-    padding-left:21px;
+  display: inline-block; position:absolute;color: #ccc;
 }
