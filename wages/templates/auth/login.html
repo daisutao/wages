@@ -9,14 +9,14 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" style="width: 41px"><i class="fa fa-user fa-lg"></i></span>
             </div>
-            {{ form.employee }}
+            {{ form.employee(class="form-control", placeholder="工号") }}
         </div>
 
         <div class="input-group col-md-10 offset-md-1 mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" style="width: 41px"><i class="fa fa-key fa-lg"></i></span>
             </div>
-            {{ form.password }}
+            {{ form.password(class="form-control") }}
         </div>
 
         {{ form.submit }}
