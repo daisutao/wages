@@ -3,18 +3,21 @@
 
 {% block content %}
         {# render_form(form) #}
-        <form method="post" class="col-md-6 m-auto">
+        <form method="post" class="form-control col-md-6 m-auto">
             <h3>请登录</h3>
             {{ form.csrf_token() }}
             <div class="form-group">
-                <i class="fa fa-user fa-lg"></i>
-                {{ form.employee }}
+                <div class="input-group-prepend">
+                    <i class="fa fa-user fa-lg"></i>
+                    {{ form.employee }}
+                </div>
             </div>
             <div class="form-group">
-                <span><i class="fa fa-lock fa-lg"></i></span>
-                {{ form.password }}
+                <div class="input-group-prepend">
+                    <i class="fa fa-key fa-lg"></i>
+                    {{ form.password }}
+                </div>
             </div>
-
 {#            {{ render_field(form.employee, form_type="inline") }}#}
 {#            {{ render_field(form.password, form_type="inline") }}#}
             {{ form.submit }}
@@ -22,7 +25,7 @@
 
 
 
-    <!--div class="form row" style = "width: 400px ;height: 258px">
+    <div class="form row" style = "width: 400px ;height: 258px">
             <div class="form-horizontal col-md-offset-3" style="width: 365px" id="login_form">
                 <h4 class="form-title">LOGIN</h4>
 
@@ -43,5 +46,5 @@
                 </div>
             </div>
         </div>
-    </div-->
+    </div>
 {% endblock %}

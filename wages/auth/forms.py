@@ -8,7 +8,7 @@ from wages.models import Dept, User
 
 class LoginForm(FlaskForm):
     employee = StringField('工号', validators=[DataRequired()],
-                            render_kw={"class": "form-control mb-2 mr-sm-2 mb-sm-0", "placeholder": "工号"})
+                            render_kw={"class": "form-control", "placeholder": "工号"})
     password = PasswordField('密码', validators=[DataRequired()],
                              render_kw={"class": "form-control", "placeholder": "密码"})
     submit = SubmitField('登录',
