@@ -13,7 +13,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(employee=form.employee.data).first()
-        login_user(user, remember=form.remember_me.data)
+        login_user(user)
         return redirect(request.args.get('next') or url_for('main.wages'))
     return render_template('auth/login.html', form=form)
 

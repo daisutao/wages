@@ -7,10 +7,12 @@ from wages.models import Dept, User
 
 
 class LoginForm(FlaskForm):
-    employee = StringField('工号', validators=[DataRequired()])
-    password = PasswordField('密码', validators=[DataRequired()])
-    remember_me = BooleanField('记住我')
-    submit = SubmitField('登录')
+    employee = StringField('工号', validators=[DataRequired()],
+                            render_kw={"class": "form-control mb-2 mr-sm-2 mb-sm-0", "placeholder": "工号"})
+    password = PasswordField('密码', validators=[DataRequired()],
+                             render_kw={"class": "form-control", "placeholder": "密码"})
+    submit = SubmitField('登录',
+                         render_kw={"class": "btn btn-primary btn-block", "placeholder": "密码"})
 
     def validate(self):
         initial_validation = super(LoginForm, self).validate()
