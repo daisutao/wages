@@ -6,16 +6,16 @@
         <form method="post" class="form-control col-md-6 m-auto">
             <h3>请登录</h3>
             {{ form.csrf_token() }}
-            <div class="form-group">
-                <div class="input-group-prepend">
+            <div class="col-md-12">
+                <div class="input-group-prepend form-group ">
                     <i class="fa fa-user fa-lg"></i>
-                    {{ form.employee }}
+                   <div>{{ form.employee }}</div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="input-group-prepend">
+            <div class="col-md-12">
+                <div class="input-group-prepend form-group">
                     <i class="fa fa-key fa-lg"></i>
-                    {{ form.password }}
+                   <div>{{ form.password }}</div>
                 </div>
             </div>
 {#            {{ render_field(form.employee, form_type="inline") }}#}
@@ -23,28 +23,4 @@
             {{ form.submit }}
         </form>
 
-
-
-    <div class="form row" style = "width: 400px ;height: 258px">
-            <div class="form-horizontal col-md-offset-3" style="width: 365px" id="login_form">
-                <h4 class="form-title">LOGIN</h4>
-
-                <div class="col-md-9" style="margin-left: 70px">
-                    <div class="form-group" >
-                        <i class="fa fa-user fa-lg"></i>
-                        <input class="form-control required" type="text"  placeholder="Username" id="username" name="username" autofocus="autofocus" maxlength="20"/>
-                    </div>
-                    <div class="form-group">
-                            <i class="fa fa-lock fa-lg"></i>
-                            <input class="form-control required" type="password"  placeholder="Password" id="password" name="password" maxlength="8"/>
-                    </div>
-                    <div class="form-group">
-                    </div>
-                    <div class="form-group col-md-offset-9">
-                        <button type="submit" class="btn btn-success pull-right" name="submit">登录</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}
