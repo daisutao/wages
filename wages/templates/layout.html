@@ -6,8 +6,8 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     {{ bootstrap.load_css() }}
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='font-awesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     {% block styles %}{% endblock %}
 </head>
 

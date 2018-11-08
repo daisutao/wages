@@ -2,23 +2,27 @@
 
 {% block content %}
     {# render_form(form) #}
-    <form method="post" class="form-control col-md-6 m-auto" style="background: rgba(255,255,255,0.2);">
-        <h4 class="my-2">请登录</h4>
-        {{ form.csrf_token() }}
-        <div class="input-group col-md-10 offset-md-1 mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" style="width: 41px"><i class="fa fa-user fa-lg"></i></span>
+    <div class="row justify-content-center">
+        <form method="post" class="form-control col-md-4" style="background: rgba(255,255,255,0.2);">
+            <h4 class="my-2">请登录</h4>
+            {{ form.csrf_token() }}
+            <div class="form-group">
+                <div class="input-group col-md-10 m-auto">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user text-info"></i></span>
+                    </div>
+                    {{ form.employee(class="form-control", placeholder="工号") }}
+                </div>
             </div>
-            {{ form.employee(class="form-control", placeholder="工号") }}
-        </div>
-
-        <div class="input-group col-md-10 offset-md-1 mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" style="width: 41px"><i class="fa fa-key fa-lg"></i></span>
+            <div class="form-group">
+                <div class="input-group col-md-10 m-auto">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-key text-info"></i></span>
+                    </div>
+                    {{ form.password(class="form-control", placeholder="密码") }}
+                </div>
             </div>
-            {{ form.password(class="form-control") }}
-        </div>
-
-        {{ form.submit }}
-    </form>
+            {{ form.submit }}
+        </form>
+    </div>
 {% endblock %}
