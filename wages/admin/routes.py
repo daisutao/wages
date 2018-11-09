@@ -1,9 +1,9 @@
-from wages.main import bp
+from wages.admin import bp
 
 from flask import redirect, render_template, request, url_for, current_app, flash, g
 from werkzeug.utils import secure_filename
 from flask_login import current_user, login_required
-from wages.main.forms import UploadForm
+from wages.admin.forms import UploadForm
 from wages.models import User, db
 from datetime import datetime
 import pandas as pd
@@ -24,11 +24,6 @@ def plus(data, x, a, b):
         data[a] += data[x] * 0.5
         data[b] += data[x] * 0.5
     return data
-
-
-@bp.route('/')
-def index():
-    return render_template('index.html')
 
 
 @bp.route('/attendance', methods=['GET', 'POST'])
@@ -65,7 +60,7 @@ def attendance():
             #             data.spc_val = row['C']
             #         db.session.commit()
             flash('上传成功！', 'success')
-            return render_template('wages.html', df=new_df)
+            return render_template('admin/wages.html', df=new_df)
 
             # flash(_('The csv file uploaded successfully!'), 'info')
             # return redirect(request.referrer)
@@ -78,17 +73,23 @@ def attendance():
         # ))
         # flash('上传成功！', 'success')
         # return render_template('wages.html', df=group)
-        # return redirect(url_for('main.wages'))
+        # return redirect(url_for('admin.wages'))
 
 
 @bp.route('/wages', methods=['GET', 'POST'])
 @login_required
 def wages():
-    return render_template('wages.html')
+    return render_template('admin/wages.html')
 
 
-@bp.route('/user/<string:employee>')
-@login_required
-def user(employee):
-    user = User.query.filter_by(employee=employee).first_or_404()
-    return render_template('user.html', user=user)
+# @bp.route('/register', methods=['GET', 'POST'])
+# def register():
+#     form = RegisterForm()
+#     if form.validate_on_submit():
+#         user = User(employee=form.employee.data, username=form.username.data)
+#         user.set_password(form.password.data)
+#         db.session.add(user)
+#         db.session.commit()
+#         flash('注册成功！', 'success')
+#         return redirect(url_for('auth.login'))
+#     return render_template('auth/register.html', form=form)

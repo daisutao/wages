@@ -15,13 +15,16 @@ def create_app(config_class=Config):
     login.init_app(app)
     moment.init_app(app)
 
-    from wages.main import bp as main_bp
-    app.register_blueprint(main_bp)
-
-    from wages.errors import bp as errors_bp
-    app.register_blueprint(errors_bp)
-
     from wages.auth import bp as auth_bp
-    app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(auth_bp)
+
+    from wages.admin import bp as admin_bp
+    app.register_blueprint(admin_bp)
+
+    from wages.staff import bp as staff_bp
+    app.register_blueprint(staff_bp)
+
+    from wages.error import bp as error_bp
+    app.register_blueprint(error_bp)
 
     return app

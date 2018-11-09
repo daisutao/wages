@@ -6,32 +6,23 @@ from wages.models import User
 from wages.extensions import db
 
 
-@bp.route('/login', methods=['GET', 'POST'])
+@bp.route('/', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('main.wages'))
+        return redirect(url_for('admin.wages'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(employee=form.employee.data).first()
+        user = User.query.filter_by(employee=form.employee.data).first_or_404()
         login_user(user)
-        return redirect(request.args.get('next') or url_for('main.wages'))
+        if user.is_administrator:
+            url = url_for('admin.wages')
+        else:
+            url = url_for('staff.wages')
+        return redirect(request.args.get('next') or url)
     return render_template('auth/login.html', form=form)
-
-
-@bp.route('/register', methods=['GET', 'POST'])
-def register():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        user = User(employee=form.employee.data, username=form.username.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('注册成功！', 'success')
-        return redirect(url_for('auth.login'))
-    return render_template('auth/register.html', form=form)
 
 
 @bp.route('/logout')
 def log_out():
     logout_user()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('auth/login'))

@@ -1,7 +1,7 @@
 {% from 'bootstrap/nav.html' import render_nav_item %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
     <div class="container">
-        <a class="navbar-brand" href="{{url_for('main.index')}}">{{g.title}}</a>
+        <a class="navbar-brand" href="{{url_for('auth.login')}}">{{g.title}}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,13 +16,13 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ url_for('main.attendance') }}">考勤文件</a>
-                        <a class="dropdown-item" href="{{ url_for('auth.register') }}">其它文件</a>
+                        <a class="dropdown-item" href="{{ url_for('admin.attendance') }}">考勤文件</a>
+                        <a class="dropdown-item" href="{{ url_for('admin.attendance') }}">其它文件</a>
                     </ul>
                 </li>
                 {% endif %}
 
-                {{ render_nav_item('main.index', '金型') }}
+                {{ render_nav_item('auth.login', '金型') }}
             </ul>
             <ul class="nav navbar-nav">
                 {% if current_user.is_anonymous %}
@@ -34,7 +34,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ url_for('main.user', employee=current_user.employee) }}">我的主页</a>
+                        <a class="dropdown-item" href="{{ url_for('admin.user', employee=current_user.employee) }}">我的主页</a>
                         <a class="dropdown-item" href="{{ url_for('auth.log_out') }}">登出</a>
                     </ul>
                 </li>

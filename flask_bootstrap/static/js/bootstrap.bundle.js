@@ -1653,7 +1653,7 @@
    * @returns {Element} common offset parent
    */
   function findCommonOffsetParent(element1, element2) {
-    // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+    // This check is needed to avoid error in case one of the elements isn't defined for any reason
     if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
       return document.documentElement;
     }
@@ -1993,7 +1993,7 @@
    */
 
   function getFixedPositionOffsetParent(element) {
-    // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+    // This check is needed to avoid error in case one of the elements isn't defined for any reason
     if (!element || !element.parentElement || isIE()) {
       return document.documentElement;
     }
@@ -3380,7 +3380,7 @@
      * - `vw`, CSS viewport width unit
      * - `vh`, CSS viewport height unit
      *
-     * For length is intended the main axis relative to the placement of the popper.<br />
+     * For length is intended the admin axis relative to the placement of the popper.<br />
      * This means that if the placement is `top` or `bottom`, the length will be the
      * `width`. In case of `left` or `right`, it will be the height.
      *

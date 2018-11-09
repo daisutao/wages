@@ -7059,7 +7059,7 @@ home:
   search:
     terms:
       - house
-      - main
+      - admin
   styles:
     - solid
   unicode: f015
@@ -11437,7 +11437,7 @@ sign-in-alt:
       - enter
       - join
       - log in
-      - login
+      - auth
       - sign in
       - sign up
       - sign-in
